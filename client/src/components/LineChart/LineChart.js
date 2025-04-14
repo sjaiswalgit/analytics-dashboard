@@ -74,6 +74,8 @@ const LineChartCard = ({data, title}) => {
                             type="monotone"
                             dataKey="page_views"
                             stroke="#2563eb"
+                            isAnimationActive={true}
+                            animationEasing="linear"
                             strokeWidth={2}
                             dot={{ r: typeof window !== 'undefined' && window.innerWidth < 480 ? 2 : 4 }}
                             activeDot={{ r: typeof window !== 'undefined' && window.innerWidth < 480 ? 5 : 7 }}

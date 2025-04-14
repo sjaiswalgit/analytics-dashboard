@@ -24,7 +24,7 @@ app.use(express.json());
 
 // Routes
 const apiRoutes = require('./routes/reportRoute');
-app.use('/api', apiRoutes);
+app.use('/api/report/', apiRoutes);
 
 // Serve React static build
 const clientBuildPath = path.join(__dirname, '../client/build');
