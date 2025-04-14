@@ -6,7 +6,8 @@
     "client": "npm --prefix client start",
     "server": "npm --prefix server start",
     "dev": "concurrently \"npm run dev --workspace server\" \"npm start --workspace client\"",
-    "build": "npm run build --workspace client"
+    "build": "npm run build --workspace client",
+    "deploy": "npm run build --workspace client && npm start --workspace server"
   },
   "devDependencies": {
     "concurrently": "^8.2.0"
