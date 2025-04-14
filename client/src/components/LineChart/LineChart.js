@@ -38,6 +38,8 @@ const LineChartCard = ({data, title}) => {
         }
         return value;
     };
+
+    
     
     return (
         <div className={styles.chartContainer}>

@@ -3,6 +3,7 @@ import styles from './Dashboard.module.css';
 import Card from '../../components/Card/Card';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import LineChartCard from '../../components/LineChart/LineChart';
+import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary';
 import { fetchDashboardData } from '../../services/api';
 import socket from '../../socket/socket';
 
@@ -22,8 +23,8 @@ export default function Dashboard() {
         ...item,
         date: new Date(item.timestamp).toLocaleTimeString('en-US', {
           minute: '2-digit',
-          second: '2-digit' ,
-            
+          second: '2-digit',
+
         })
       }));
 
@@ -35,12 +36,12 @@ export default function Dashboard() {
 
     socket.on('updateDashboard', (data) => {
       console.log(data);
-    
+
       data["date"] = new Date(data?.timestamp).toLocaleTimeString('en-US', {
         minute: '2-digit',
         second: '2-digit',
       });
-    
+
       setData((prev) => {
         const updated = [...prev, data]; // push to end
         if (updated.length > 7) {
@@ -54,18 +55,18 @@ export default function Dashboard() {
     return () => {
       socket.off('receiveMessage');
     };
-   
+
   }, []);
 
 
 
-  
-  useEffect(()=>{
-    if(data.length>0){
-      setCurrentMetrics(data[data.length-1])
+
+  useEffect(() => {
+    if (data.length > 0) {
+      setCurrentMetrics(data[data.length - 1])
     }
 
-  },[data])
+  }, [data])
 
 
 
@@ -83,27 +84,32 @@ export default function Dashboard() {
 
         <div className={styles.flex}>
           {/* Active Users Card */}
-          <Card
-            title="Active Users"
-            description="Total users this month"
-            counter={currentMetrics.active_users}
-            growth={12.5}
-          />
+          <ErrorBoundary fallback={<p>Oops! Something broke. Please try again later.</p>}>
+            <Card
+              title="Active Users"
+              counter={currentMetrics.active_users}
+              growth={12.5}
+            />
+          </ErrorBoundary>
 
           {/* Progress Bar */}
-          <ProgressBar
-            title="Session Duration"
-            data={currentMetrics.avg_session_duration}
-            percentage={65}
-            unit="sec"
-          />
+          <ErrorBoundary fallback={<p>Oops! Something broke. Please try again later.</p>}>
+            <ProgressBar
+              title="Session Duration"
+              data={currentMetrics.avg_session_duration}
+              percentage={65}
+              unit="sec"
+            />
+          </ErrorBoundary>
         </div>
 
         {/* Line Chart */}
-        <LineChartCard
-          title="Page Views Trends"
-          data={data}
-        />
+        <ErrorBoundary fallback={<p>Oops! Something broke. Please try again later.</p>}>
+          <LineChartCard
+            title="Page Views Trends"
+            data={data}
+          />
+        </ErrorBoundary>
       </div>
     </div>
   );
