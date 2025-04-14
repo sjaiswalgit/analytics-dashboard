@@ -33,10 +33,8 @@ export default function Dashboard() {
       console.log(err)
     })
 
-
-    socket.on('updateDashboard', (data) => {
-      console.log(data);
-
+    socket.on('updateDashboard', (data)=>{
+      console.log(data)
       data["date"] = new Date(data?.timestamp).toLocaleTimeString('en-US', {
         minute: '2-digit',
         second: '2-digit',
@@ -50,13 +48,15 @@ export default function Dashboard() {
         return updated;
       });
     });
-
-
+  
     return () => {
-      socket.off('receiveMessage');
+      socket.off('updateDashboard'); // 👈 cleanup on unmount
     };
 
+
   }, []);
+
+
 
 
 
@@ -73,7 +73,12 @@ export default function Dashboard() {
 
 
 
+  const len = data?.length || 0;
 
+  const prev = data?.[len - 2]?.active_users ?? 0;
+  const current = data?.[len - 1]?.active_users ?? 0;
+  
+  const diff = prev !== 0 ? (current - prev) / prev : 0;
 
 
 
@@ -88,7 +93,7 @@ export default function Dashboard() {
             <Card
               title="Active Users"
               counter={currentMetrics.active_users}
-              growth={12.5}
+              growth={(diff*100).toFixed(2)}
             />
           </ErrorBoundary>
 
@@ -97,7 +102,7 @@ export default function Dashboard() {
             <ProgressBar
               title="Session Duration"
               data={currentMetrics.avg_session_duration}
-              percentage={65}
+              percentage={currentMetrics.avg_session_duration*100/10}
               unit="sec"
             />
           </ErrorBoundary>
