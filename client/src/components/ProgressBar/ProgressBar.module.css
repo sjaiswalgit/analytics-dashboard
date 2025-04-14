@@ -1,0 +1,76 @@
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 350px;
+    transition: all 0.3s ease;
+}
+
+.cardTitle {
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.progressContainer {
+    position: relative;
+    height: 10px;
+    background-color: #e5e7eb;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.progressBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #2563eb;
+    transition: width 0.5s ease;
+}
+
+.progressLabel {
+    text-align: center;
+    margin-top: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #4b5563;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .card {
+        padding: 16px;
+        max-width: 100%;
+    }
+    
+    .cardTitle {
+        font-size: 13px;
+    }
+    
+    .progressContainer {
+        height: 8px;
+    }
+    
+    .progressLabel {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 12px;
+    }
+    
+    .progressContainer {
+        height: 6px;
+    }
+    
+    .progressLabel {
+        font-size: 12px;
+    }
+}
