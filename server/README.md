@@ -36,7 +36,7 @@ npm install
 npm run dev
 ```
 
-This starts the server on the port specified in your `.env` file (defaults to `3001` if unspecified) and begins emitting data every 5 seconds to all connected clients.
+This starts the server on the port specified in your `.env` file (defaults to `8080` if unspecified) and begins emitting data every 5 seconds to all connected clients.
 
 ---
 
