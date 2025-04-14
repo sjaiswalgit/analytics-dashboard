@@ -1,6 +1,6 @@
 const app = require('./app');
 const http = require('http');
-const { setupSocket } = require('./socket/index');
+const { setupSocket } = require('./socket/socket');
 const {initializeData}=require('./utils/dummyDataGenerator')
 
 const server = http.createServer(app);

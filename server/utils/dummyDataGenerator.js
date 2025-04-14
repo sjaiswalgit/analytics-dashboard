@@ -1,4 +1,4 @@
-const {getIO} = require('../socket/index')
+const {getIO} = require('../socket/socket')
 
 
 
