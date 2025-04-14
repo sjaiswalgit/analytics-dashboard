@@ -10,8 +10,10 @@ This is the **backend** of the Real-Time Dashboard project, built with **Node.js
 server/
 ├── server.js                        # Main server entry point
 ├── app.js                           # Express setup 
-├── socket.js                        # Socket.IO configuration and event handling
-├── dummyDataGenerator.js            # Mock data generation logic
+├── routes                           # Folder for api routes
+├── controller                       # Folder for api handling
+├── socket/socket.js                 # Socket.IO configuration and event handling
+├── utils/dummyDataGenerator.js      # Mock data generation logic
 └── package.json                     # Server dependencies and scripts
 ```
 
